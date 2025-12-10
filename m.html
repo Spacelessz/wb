@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Портфолио | Попа Кака</title>
+    <meta name="description" content="Личная страница с навыками, галереей и формой обратной связи">
+    
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --gray: #f8fafc;
+            --text: #1e293b;
+            --border: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            min-height: 100vh;
+        }
+
+        
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            padding: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 600;
+            padding: 10px 16px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+            background: rgba(99, 102, 241, 0.1);
+            transform: translateY(-2px);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 50%;
+            background: var(--primary);
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        nav a:hover::after {
+            width: 70%;
+            left: 15%;
+        }
+
+        
+        section {
+            padding: 80px 0;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            color: var(--text);
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+        
+        #main {
+            text-align: center;
+            padding-top: 60px;
+        }
+
+        #main p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        
+        .skills-table {
+            display: flex;
+            justify-content: center;
+        }
+
+        table {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+            padding: 20px;
+            font-size: 1.1rem;
+        }
+
+        td {
+            padding: 18px 30px;
+            text-align: center;
+            transition: background 0.3s;
+        }
+
+        tr:nth-child(even) td {
+            background: #f8fafc;
+        }
+
+        tr:hover td {
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        
+        .gallery {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .gallery img {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: all 0.4s ease;
+        }
+
+        .gallery img:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        
+        .form-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        form {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+        }
+
+        
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            h1 { font-size: 2.3rem; }
+            h2 { font-size: 1.9rem; }
+
+            .gallery img {
+                width: 100%;
+                max-width: 350px;
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#main">Главная</a>
+                <a href="#skills">Навыки</a>
+                <a href="#gallery">Галерея</a>
+                <a href="#form">Обратная связь</a>
+            </nav>
+        </div>
+    </header>
+    <div class = "container">
+        <h3> Нумерованный список </h3>
+        <ol>
+            <li>Первый пункт</li>
+            <li>Второй пункт</li>
+            <li>Третий пункт</li>
+        </ol>
+        <h3> Ненумированный список</h3>
+        <ul>
+            <li> джоджо</li>
+            <li> еще </li>
+            <li> ищо </li>
+        </ul>
+
+    <div class="container">
+
+        <section id="main">
+            <h1>Ъ</h1>
+            <p>здесь что то накалякал</p>
+        </section>
+
+        <section id="skills">
+            <h2>Мои навыки</h2>
+            <div class="skills-table">
+                <table>
+                    <tr>
+                        <th>Навык</th>
+                        <th>Уровень</th>
+                    </tr>
+                    <tr>
+                        <td>HTML</td>
+                        <td>нубик</td>
+                    </tr>
+                    <tr>
+                        <td>CSS</td>
+                        <td>ноль</td>
+                    </tr>
+                    <tr>
+                        <td>Python</td>
+                        <td>кибер нуб</td>
+                    </tr>
+                    <tr>
+                        <td>JavaScript</td>
+                        <td>бот</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <section id="gallery">
+            <h2>Галерея</h2>
+            <div class="gallery">
+                <img src="C:\Users\stem\Desktop\bobs.jpg" alt="Моё фото">
+                <img src="C:\Users\stem\Desktop\child po.jpg" alt="в прайме">
+                <img src="C:\Users\stem\Desktop\ёкмакарёк.jpg" alt="Дополнительно еще что то">
+            </div>
+        </section>
+
+        <section id="form">
+            <h2>Связаться со мной</h2>
+            <div class="form-container">
+                <form onsubmit="alert('Спасибо! В реальном проекте сообщение было бы отправлено.'); return false;">
+                    <label for="name">Имя *</label>
+                    <input type="text" id="name" name="name" required placeholder="А Б">
+
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required placeholder="dias@example.com">
+
+                    <label for="phone">Телефон</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+7 (747) 123-45-67">
+
+                    <label for="message">Сообщение</label>
+                    <textarea id="message" name="message" placeholder="Напишите ваше сообщение..."></textarea>
+
+                    <button type="submit">Отправить сообщение</button>
+                </form>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>
